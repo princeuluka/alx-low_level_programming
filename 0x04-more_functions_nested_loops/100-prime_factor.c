@@ -1,26 +1,38 @@
 #include<stdio.h>
-#include<math.h>
-int getMaxPrimeFactor(int n) {
-   int i, max = -1;
-   while(n % 2 == 0) {
-      max = 2;
-      n = n/2; //reduce n by dividing this by 2
-   }
-   for(i = 3; i <= sqrt(n); i=i+2){ //i will increase by 2, to get
-      only odd numbers
-      while(n % i == 0) {
-         max = i;
-         n = n/i;
-      }
-   }
-   if(n > 2) {
-      max = n;
-   }
-   return max;
+ 
+int largestprimefactor(unsigned long a)
+{
+    int i =2 ,largeprimefactor = 2;
+     
+    while(a!=1)
+    {
+        if(a%i==0)
+        {
+            while(a%i==0)
+            {
+                a = a/i;
+                 
+                printf("%d ",i);
+                 
+                if(i>largeprimefactor)
+                {
+                    largeprimefactor = i;
+                }
+            }
+        } 
+         
+        i++;
+    }
+     
+    return largeprimefactor;
 }
-main() {
-   int n;
-   printf("Enter a number: ");
-   scanf("%d", &n);
-   printf("Max prime factor: %d", getMaxPrimeFactor(n));
+ 
+main()
+{
+    unsigned long inputnumber;
+     
+    printf("Enter a number : ");
+    scanf("%d",&inputnumber);
+     
+    printf("\nThe largest prime factor of %d is %d",inputnumber,largestprimefactor(inputnumber));
 }
